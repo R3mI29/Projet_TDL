@@ -1,0 +1,32 @@
+{
+  open Logo_parser
+  
+  exception Quit
+  exception Not_recognized
+}
+
+let space = [' ' '\t' '\n' '\r']
+let digit = ['0'-'9']
+let sign = ['+' '-']
+let integer = sign? digit+
+let letter = ['a'-'z' 'A'-'Z']
+let ident = (letter | '_') (letter | digit | '_')*
+
+rule read_lexeme = parse
+  | space+    { read_lexeme lexbuf }
+  | "Def"     { DEF }
+  | "Avance"  { AVANCE }
+  | "Recule"  { RECULE }
+  | "Gauche"  { GAUCHE }
+  | "Droite"  { DROITE }
+  | "Efface"  { EFFACE }
+  | "Dessine" { DESSINE }
+  | "Deplace" { DEPLACE }
+  | ":"       { COLON }
+  | ";"       { SEMICOLON }
+  | "."       { DOT }
+  | integer as s { INT (int_of_string s) }
+  | ident as s   { IDENT s }
+  | "#Fin"    { raise Quit }
+  | eof       { raise Quit }
+  | _         { raise Not_recognized }
