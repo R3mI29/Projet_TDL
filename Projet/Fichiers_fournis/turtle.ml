@@ -69,7 +69,6 @@ let move (bf : bool) (t : t_turtle) (d : int) : t_turtle =
             else t.y_loc - (dy d (t.ang)) ;
     ang = t.ang ;
     pen = t.pen ;
-    info = t.info ;
 }
 ;;
 
@@ -100,7 +99,6 @@ let turn (rl : bool) (t : t_turtle) (a : int) : t_turtle =
            then a + 360
            else a) ;
     pen = t.pen ;
-    info = t.info ;
   }
 ;;
 
@@ -123,7 +121,6 @@ let trace (ud : bool) (t : t_turtle)  : t_turtle =
     y_loc = t.y_loc ;
     ang = t.ang ;
     pen = ud ;
-    info = t.info ;
   }
 ;;
 
