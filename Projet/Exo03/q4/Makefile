@@ -41,7 +41,7 @@ OBJLIBS = graphics.cma
 
 # The file to generate the executable
 
-#EXEC = repl_logo
+EXEC = repl_logo
 
 #################### No change is needed below ######################
 
