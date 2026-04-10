@@ -41,8 +41,8 @@ rule read_lexeme = parse
   | "%"       { MOD }
   | "("       { LPAREN }
   | ")"       { RPAREN }
-  | ">"       { UNDER }
-  | "<"       { OVER }
+  | ">"       { OVER }
+  | "<"       { UNDER }
   | "="       { EQUAL }
   | integer as s { INT (int_of_string s) }
   | ident as s   { IDENT s }

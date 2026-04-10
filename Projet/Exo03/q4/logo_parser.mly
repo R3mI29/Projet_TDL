@@ -62,5 +62,5 @@ opcmp:
 ;
 
 bexpr:
-  | LPAREN expr opcmp expr RPAREN { Cmp ($2, $3, $4) }
+  | LPAREN expr opcmp expr RPAREN { If ($2, $3, $4) }
 ;
