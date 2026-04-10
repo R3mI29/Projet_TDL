@@ -10,10 +10,9 @@ open Env
 open Turtle
 
 (* Decommenter si tortue graphique *)
-(*
+
 open Turtle_graphic
-;;
-*)
+
 
 (*--------------------------------------------*)
 (* type pour représenter l'état de la mémoire *)
@@ -57,19 +56,6 @@ type t_cmd =
 ;;
 
 (*-------------------------------------------------------------------*)
-(* Le type pour la syntaxe abstraite des instructions du langage     *)
-(* Pour le moment, il y a la définition de la valeur d'une variable, *)
-(* une commande pour la tartue et une suite d'instructions           *)
-(*-------------------------------------------------------------------*)
-type t_instr =
-  | Define of t_ident * t_expr
-  | Cmd of t_cmd
-  | Seq of t_instr * t_instr
-  | Repeat of t_expr * t_instr
-  | IF of t_bexpr * t_instr * t_instr
-;;
-
-(*-------------------------------------------------------------------*)
 (* Le type pour les opérateurs de comparaison du language Logo       *)
 (*-------------------------------------------------------------------*)
 type t_opcmp = 
@@ -84,6 +70,18 @@ type t_opcmp =
 (*-------------------------------------------------------------------*)
 type t_bexpr =
   | Cmp of t_expr * t_opcmp * t_expr
+;;
+(*-------------------------------------------------------------------*)
+(* Le type pour la syntaxe abstraite des instructions du langage     *)
+(* Pour le moment, il y a la définition de la valeur d'une variable, *)
+(* une commande pour la tartue et une suite d'instructions           *)
+(*-------------------------------------------------------------------*)
+type t_instr =
+  | Define of t_ident * t_expr
+  | Cmd of t_cmd
+  | Seq of t_instr * t_instr
+  | Repeat of t_expr * t_instr
+  | IF of t_bexpr * t_instr * t_instr
 ;;
 
 
@@ -133,6 +131,26 @@ let interp_cmd (c : t_cmd) (s : t_state) : t_turtle =
   | Clear -> Turtle.reset ()
 ;;
 
+ 
+
+let rec iterate n f a =
+  if n > 0 then iterate (n-1) f (f a) else a
+;;
+
+
+let rec interp_bexpr (env : t_env) (b : t_bexpr) : bool = 
+  match b with
+  | Cmp (e1, op, e2) ->
+    let val1 = interp_expr env e1 in
+    let val2 = interp_expr env e2 in
+    match op with
+    | EQUAL -> val1 = val2
+    | OVER -> val1 > val2
+    | UNDER -> val1 < val2
+;; 
+
+
+
 
 (*-----------------------------------------------------*)
 (* Interprétation d'une instruction                    *)
@@ -165,20 +183,3 @@ let rec interp_instr (i : t_instr) (s : t_state) : t_state =
       else
         interp_instr i_2 s
 ;;
- 
-
-let rec iterate n f a =
-  if n > 0 then iterate (n-1) f (f a) else a
-;;
-
-
-let rec interp_bexpr (env : t_env) (b : t_bexpr) : bool = 
-  match b with
-  | Cmp (e1, op, e2) ->
-    let val1 = interp_expr env e1 in
-    let val2 = interp_expr env e2 in
-    match op with
-    | EQUAL -> val1 = val2
-    | OVER -> val1 > val2
-    | UNDER -> val1 < val2
-;; 
