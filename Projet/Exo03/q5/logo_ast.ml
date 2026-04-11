@@ -11,8 +11,8 @@ open Turtle
 
 (* Decommenter si tortue graphique *)
 
-(*open Turtle_graphic
-*)
+open Turtle_graphic
+
 
 (*--------------------------------------------*)
 (* type pour représenter l'état de la mémoire *)
@@ -122,13 +122,13 @@ let rec interp_expr (env : t_env) (e : t_expr) : int =
 let interp_cmd (c : t_cmd) (s : t_state) : t_turtle =
   let (env, turtle) = s in
   match c with
-  | Forward e -> Turtle.move_fwd turtle (interp_expr env e)
-  | Backward e -> Turtle.move_bck turtle (interp_expr env e)
-  | Right e -> Turtle.turn_right turtle (interp_expr env e)
-  | Left e -> Turtle.turn_left turtle (interp_expr env e)
-  | PenUp -> Turtle.nodraw turtle
-  | PenDown -> Turtle.draw turtle
-  | Clear -> Turtle.reset ()
+  | Forward e -> move_fwd turtle (interp_expr env e)
+  | Backward e -> move_bck turtle (interp_expr env e)
+  | Right e -> turn_right turtle (interp_expr env e)
+  | Left e -> turn_left turtle (interp_expr env e)
+  | PenUp -> nodraw turtle
+  | PenDown -> draw turtle
+  | Clear -> reset ()
 ;;
 
  

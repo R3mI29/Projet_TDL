@@ -11,7 +11,7 @@ PARSER = logo_parser
 # The Caml sources files needed, must appear in dependencies order
 #
 # avec tortue graphique
-#SOURCES = env.ml geometry.ml turtle.ml turtle_graphic.ml logo_ast.ml
+SOURCES = env.ml geometry.ml turtle.ml turtle_graphic.ml logo_ast.ml
 
 # Path to the graphic library
 # avec tortue graphique
@@ -22,9 +22,9 @@ PARSER = logo_parser
 # l'on charge celle-ci dans l'interpréteur ocaml avec la directive #require "graphics"
 #
 # Exemple sur ma machine (LF)
-#LIBS = -I /home/r3m1/.opam/default/lib/graphics graphics.cma
+LIBS = -I /home/r3m1/.opam/default/lib/graphics graphics.cma
 
-#OBJLIBS = graphics.cma
+OBJLIBS = graphics.cma
 #########################################################################
 #
 ############@ VARIABLE SANS TORTUE GRAPHIQUE ############################
@@ -32,12 +32,12 @@ PARSER = logo_parser
 # The Caml sources files needed, must appear in dependencies order
 #
 # sans tortue graphique
-SOURCES = env.ml geometry.ml turtle.ml logo_ast.ml 
+#SOURCES = env.ml geometry.ml turtle.ml logo_ast.ml 
 #
 # sans tortue graphique
-LIBS = 
+#LIBS = 
 
-OBJLIBS=
+#OBJLIBS=
 
 # The file to generate the executable
 
