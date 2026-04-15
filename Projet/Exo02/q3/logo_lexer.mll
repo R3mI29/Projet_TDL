@@ -5,7 +5,7 @@
   exception Not_recognized
 }
 
-let space = [' ' '\t' '\n' '\r']
+let space = [' ''\n']
 let digit = ['0'-'9']
 let sign = ['+' '-']
 let integer = sign? digit+
