@@ -11,7 +11,6 @@
 %token REPETE OPENBRACKET CLOSEBRACKET
 %token SI ALORS SINON FINSI
 %token OVER UNDER EQUAL
-%token EOF
 
 %start main
 %type <Logo_ast.t_instr> main

@@ -62,7 +62,9 @@ let string_of_env (e : t_env) : string =
 ;;
 
 
-
+(*------------------------------------------------------*)
+(* Fais tourner une boucle le nombre de fois demandé    *)
+(*------------------------------------------------------*)
 let rec iterate n f a =
   if n > 0
   then iterate (n - 1) f (f a)

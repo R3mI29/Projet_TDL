@@ -8,10 +8,10 @@
 let space = [' ''\n']
 let digit = ['0'-'9']
 let sign = ['+' '-']
-let integer = sign? digit+
+let integer = sign? digit+ (*"?" car on en veut 0 ou 1 et "+" car on veut au moins 1*)
 let letter = ['a'-'z' 'A'-'Z']
-let ident = (letter | '_') (letter | digit | '_')*
-let com = "--" [^'\n']*
+let ident = (letter | '_') (letter | digit | '_')* (*On a d'abord letter ou rien, puis si letter, soit un autre nom d'identifiant, soit la valeur numérique. Ou alors rien. Et on fait "*" car on en veut 0 si y a rien jusqu'à plusieurs avec le digit*)
+let com = "--" [^'\n']* (*On regarde pour les commentaires, si il y a "--", tout ce qui n'est pas "\n" est pris comme un commentiare. Et on a une "*" car comme ça on peut mettre 0 ou plusieurs caractères dans le commentaire*)
 
 rule read_lexeme = parse
   | space+    { read_lexeme lexbuf }
@@ -47,5 +47,4 @@ rule read_lexeme = parse
   | integer as s { INT (int_of_string s) }
   | ident as s   { IDENT s }
   | "#Fin"    { raise Quit }
-  | eof       { raise Quit }
   | _         { raise Not_recognized }

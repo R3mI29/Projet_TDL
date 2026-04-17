@@ -9,7 +9,6 @@
 %token PLUS MINUS MULT DIV MOD
 %token LPAREN RPAREN
 %token REPETE OPENBRACKET CLOSEBRACKET
-%token EOF
 
 %start main
 %type <Logo_ast.t_instr> main

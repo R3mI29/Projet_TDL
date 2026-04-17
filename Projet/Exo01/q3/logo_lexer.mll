@@ -28,5 +28,4 @@ rule read_lexeme = parse
   | integer as s { INT (int_of_string s) }
   | ident as s   { IDENT s }
   | "#Fin"    { raise Quit }
-  | eof       { raise Quit }
   | _         { raise Not_recognized }

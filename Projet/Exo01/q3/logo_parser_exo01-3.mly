@@ -6,7 +6,6 @@
 %token <string> IDENT
 %token DEF AVANCE RECULE GAUCHE DROITE EFFACE DESSINE DEPLACE
 %token COLON SEMICOLON DOT
-%token EOF
 %start main
 %type <Logo_ast.t_instr> main
 

@@ -26,5 +26,4 @@ rule read_lexeme = parse
   | integer as s { print_endline ("Entier : " ^ s); read_lexeme lexbuf }
   | ident as s   { print_endline ("Identificateur : " ^ s); read_lexeme lexbuf }
   | "#Fin"    { print_endline "La commande #Fin, on s'arrête"; raise Quit }
-  | eof       { raise Quit }
   | _         { raise Not_recognized }
