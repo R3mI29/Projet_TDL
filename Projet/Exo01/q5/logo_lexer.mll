@@ -10,7 +10,8 @@ let digit = ['0'-'9']
 let sign = ['+' '-']
 let integer = sign? digit+
 let letter = ['a'-'z' 'A'-'Z']
-let ident = (letter | '_') (letter | digit | '_')*
+let lowercase = ['a' - 'z']
+let ident = (lowercase | '_') (letter | digit | '_')*
 
 rule read_lexeme = parse
   | space+    { read_lexeme lexbuf }
