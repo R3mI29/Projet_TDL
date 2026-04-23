@@ -158,7 +158,7 @@ let rec interp_instr (i : t_instr) (s : t_state) : t_state =
       interp_instr i2 new_state
   | Repeat (e, i_0) ->
       let nb = interp_expr env e in
-      iterate nb (fun state_courant -> interp_instr i_0 state_courant) s
+      iterate nb (interp_instr i_0) s
   | Cmp (cond, i_1, i_2) ->
       if interp_bexpr env cond then
         interp_instr i_1 s
